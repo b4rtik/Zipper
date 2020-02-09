@@ -358,7 +358,8 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD dwReason, LPVOID lpReserved)
 			if (!PathFileExists(pwszParams)) {
 				wprintf(L"[!] Path does not exist.\n\n");
 				fflush(stdout);
-				ExitProcess(0);
+				break;
+				//ExitProcess(0);
 			}
 
 			wprintf(L" __________.__                                   \n");
@@ -385,7 +386,8 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD dwReason, LPVOID lpReserved)
 			DWORD dwRetVal = GetTempPath(MAX_PATH, chZipPath);
 			if (dwRetVal == 0) {
 				fflush(stdout);
-				ExitProcess(0);
+				//ExitProcess(0);
+				break;
 			}
 
 			WCHAR chFileName[MAX_PATH] = { 0 };
@@ -396,7 +398,8 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD dwReason, LPVOID lpReserved)
 			zipFile zFile = CreateZip(chZipPath);
 			if (zFile == NULL) {
 				fflush(stdout);
-				ExitProcess(0);
+				//ExitProcess(0);
+				break;
 			}
 
 			if (IsDirectory == FALSE) {
@@ -404,7 +407,8 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD dwReason, LPVOID lpReserved)
 					wprintf(L"[!] Failed to compress %ls\n\n", wcZipContent);
 					zipClose(zFile, NULL);
 					fflush(stdout);
-					ExitProcess(0);
+					//ExitProcess(0);
+					break;
 				}
 			}
 			else {
@@ -412,7 +416,8 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD dwReason, LPVOID lpReserved)
 					wprintf(L"[!] Failed to compress %ls\n\n", wcZipContent);
 					zipClose(zFile, NULL);
 					fflush(stdout);
-					ExitProcess(0);
+					//ExitProcess(0);
+					break;
 				}
 			}
 
@@ -431,7 +436,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD dwReason, LPVOID lpReserved)
 		fflush(stdout);
 
 		// We're done, so let's exit
-		ExitProcess(0);
+		//ExitProcess(0);
 		break;
 	case DLL_PROCESS_DETACH:
 	case DLL_THREAD_ATTACH:
